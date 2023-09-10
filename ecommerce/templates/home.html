@@ -9,7 +9,7 @@
 <h1>Frutiagricola</h1>
 
 <div id="cart" class="cart">
-    <a href="#" onclick="mostrarCarrito()">
+    <a href="javascript:void(0);" onclick="mostrarCarrito()">
         <div class="avatar avatar-lg">
             <span class="avatar-title rounded bg-dark color-btns color-txt">
                 <i class="fas fa-shopping-cart fa-lg"></i>
@@ -34,7 +34,7 @@
         <h3 class=""> ARS${{ producto.precio }} </h2>
             <div class="contenedor-botonera-{{ producto.nombre }}">
                 <button class="btn btn-primary"
-                    onclick="mostrarDetallesProducto('{{ producto.id }}', '{{ producto.nombre }}', '{{ producto.descripcion }}', `{{ url_for('static',filename=producto.img) }}` , '{{producto.precio}}')">Ver
+                    onclick="mostrarDetallesProducto('{{ producto.id }}')">Ver
                     detalles</button>
             </div>
     </div>
@@ -76,7 +76,9 @@
     </form>
 
     <div class="text-overline opacity-75 text-center m-b-10">Detalle</div>
-    
+    <a href="#"><div id="descripcion" onclick="mostrarCarrito()">Unidades en carrito(0)</div></a>
+    <div id="cantidad-productos">0 Productos</div>
+    <div id="importe-final">0 ARS</div>
 
 </div>
 

@@ -69,9 +69,9 @@ def cart():
         return '0'
 
 
-@app.route("/number-cart-items", methods=['GET', 'POST'])
-def number_cart_items():
+@app.route("/cart-info", methods=['GET', 'POST'])
+def cart_info():
     if session['carrito']:
-        return str(len(session['carrito']))
+        return session['carrito']
     else:
-        return '0'
+        return []
