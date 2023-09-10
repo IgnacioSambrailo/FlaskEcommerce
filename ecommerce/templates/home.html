@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block contenido %}
+
+<!-- Includes and scripts -->
+{% include 'modal-producto.html' %}
+{% include 'modal-carrito.html' %}
+<script src="../static/js/home.js"></script>
+
+<h1>Frutiagricola</h1>
+
+<div id="cart" class="cart">
+    <a href="#" onclick="mostrarCarrito()">
+        <div class="avatar avatar-lg">
+            <span class="avatar-title rounded bg-dark color-btns color-txt">
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                {% if cantidad_productos_carrito == 0 %}
+                <span class="item_cart_number"></span>
+                {% else %}
+                <span class="item_cart_number">({{ cantidad_productos_carrito }})</span>
+                {% endif %}
+            </span>
+        </div>
+    </a>
+</div>
+
+<div class="contenedor-productos">
+    {% for producto in productos %}
+    <div class="contenedor-producto-{{ producto.nombre }}">
+        <h2 class=""> {{ producto.nombre }} </h2>
+        <div class="imagen-producto">
+            <img src="{{ url_for('static',filename=producto.img) }}" alt="Imagen producto">
+        </div>
+        <p> {{ producto.descripcion }} </p>
+        <h3 class=""> ARS${{ producto.precio }} </h2>
+            <div class="contenedor-botonera-{{ producto.nombre }}">
+                <button class="btn btn-primary"
+                    onclick="mostrarDetallesProducto('{{ producto.id }}', '{{ producto.nombre }}', '{{ producto.descripcion }}', `{{ url_for('static',filename=producto.img) }}` , '{{producto.precio}}')">Ver
+                    detalles</button>
+            </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="content-section">
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ form.nombre_apellido.label(class="form-control-label") }}
+                {{ form.nombre_apellido(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.numero_whatsapp.label(class="form-control-label") }}
+                {{ form.numero_whatsapp(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.localidad.label(class="form-control-label") }}
+                {{ form.localidad(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.direccion.label(class="form-control-label") }}
+                {{ form.direccion(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.comentario.label(class="form-control-label") }}
+                {{ form.comentario(class="form-control form-control-lg") }}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+    <div class="text-overline opacity-75 text-center m-b-10">Detalle</div>
+    
+
+</div>
+
+{% endblock contenido %}
