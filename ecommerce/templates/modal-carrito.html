@@ -13,6 +13,8 @@
       </div>
       {% if cantidad_productos_carrito == 0 %}
             <p id="advertencia-carrito" class="modal-body">Aun no agregaste nada a tu carrito...</p>
+            {% else %}
+            <p id="advertencia-carrito" class="modal-body"></p>
       {% endif %}
       <!--Body-->
       <div class="modal-body-carrito">

@@ -11,18 +11,16 @@ def home():
         print(f'pedido creado por {form.nombre_apellido.data}')
     if 'carrito' not in session:
         session['carrito'] = []
-        total_carrito = 0
         cantidad_productos_carrito = 0
     else:
-        total_carrito = 0
         cantidad_productos_carrito = len(session['carrito'])
-        pass
+    
+        print(len(session['carrito']))
     return render_template('home.html',
                             productos=Producto.query.all(),
                             title='Home',
                             form=form,
                             info_carrito=session['carrito'],
-                            total_carrito=total_carrito,
                             cantidad_productos_carrito = cantidad_productos_carrito
                             )
 

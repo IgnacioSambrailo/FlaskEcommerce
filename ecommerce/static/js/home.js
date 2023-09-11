@@ -45,14 +45,16 @@ function actualizarCantidadItemsCarrito() {
     fetch(`/cart-info`)
         .then(response => response.json())
         .then(data => {
-            const itemCount = data.length;
-            cantidad_items_carrito.innerHTML = itemCount ? `(${itemCount})` : "";
-            console.log(itemCount)
-            if (itemCount == 0){
-                document.getElementById('advertencia-carrito').innerText = 'Aun no agregaste nada a tu carrito...'
+            const cantidad = data.length;
+            cantidad_items_carrito.innerHTML = cantidad ? `(${cantidad})` : "";
+            return cantidad
+        })
+        .then(cantidad=>{
+            if (cantidad == 0){
+                document.getElementById('advertencia-carrito').innerHTML = 'Aun no agregaste nada a tu carrito...'
             }
             else{
-                document.getElementById('advertencia-carrito').innerText = ''
+                document.getElementById('advertencia-carrito').innerHTML = ''
             }
         })
         .catch(error => {
