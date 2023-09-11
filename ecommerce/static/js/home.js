@@ -103,7 +103,8 @@ function actualizarDetalleCompra(){
 
             $('#descripcion')[0].innerHTML = `Unidades en carrito (${cantidad_productos})`;
             $('#cantidad-productos')[0].innerHTML = `${cantidad_productos} Productos`;
-            $('#importe-final')[0].innerHTML = `${precio_final} $ARS`
+            $('#importe-final')[0].innerHTML = `$ARS ${precio_final}`
+            $('#importe-final-restalado')[0].innerHTML = `$ARS ${precio_final}`
 
         })
         .catch(error => {

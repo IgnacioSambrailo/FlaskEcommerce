@@ -33,8 +33,7 @@
         <p> {{ producto.descripcion }} </p>
         <h3 class=""> ARS${{ producto.precio }} </h2>
             <div class="contenedor-botonera-{{ producto.nombre }}">
-                <button class="btn btn-primary"
-                    onclick="mostrarDetallesProducto('{{ producto.id }}')">Ver
+                <button class="btn btn-primary" onclick="mostrarDetallesProducto('{{ producto.id }}')">Ver
                     detalles</button>
             </div>
     </div>
@@ -69,17 +68,54 @@
                 {{ form.comentario.label(class="form-control-label") }}
                 {{ form.comentario(class="form-control form-control-lg") }}
             </div>
+
+            <div class="form-group m-t-20 col-lg-12 w-o-border">
+                <div class="col-md-12  m-b-20 ml-auto ">
+                    <div class="row">
+                        <div class="col-md-12 catalog-items">
+                            <div class="text-overline opacity-75 text-center m-b-10">DETALLE</div>
+                            <div class="table-responsive">
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-items-header">Descripción</th>
+                                            <th class="text-items-header"
+                                                style="text-align: right !important;">Cant. Prod.</th>
+                                            <th class="text-items-header"
+                                                style="text-align: right !important;">Total (ARS$)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-items "><a href="javascript:void(0);">
+                                                <b id="descripcion" onclick="mostrarCarrito()">Unidades en carrito(0)</b>
+                                            </a></td>
+                                            <td align="right" class="text-items"><b id="cantidad-productos">0</b></td>
+                                            <td align="right" class="text-items"><b id="importe-final">0 ARS</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="p-all-15">
+                    <div class="row">
+                        <div class="col-md-12 my-2 m-md-0">
+                            <div class="text-overline opacity-75 text-center">Total de tu orden</div>
+                            <h3 class="m-0 text-center" id="importe-final-restalado">ARS$ 1.500</h3>
+                        </div>
+                    </div>
+                </div>
+ 
+
+            <div class="form-group text-center">
+                {{ form.submit(class="btn btn-outline-info m-b-15 ml-2 mr-2 btn-lg color-btns color-txt") }}
+            </div>
         </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
-        </div>
     </form>
-
-    <div class="text-overline opacity-75 text-center m-b-10">Detalle</div>
-    <a href="#"><div id="descripcion" onclick="mostrarCarrito()">Unidades en carrito(0)</div></a>
-    <div id="cantidad-productos">0 Productos</div>
-    <div id="importe-final">0 ARS</div>
-
 </div>
 
 {% endblock contenido %}
