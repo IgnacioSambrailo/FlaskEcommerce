@@ -2,6 +2,10 @@ from flask import session, redirect, url_for, render_template, flash, redirect, 
 from ecommerce import app
 from ecommerce.forms import InformacionCliente
 from ecommerce.models import Producto
+import os
+
+def crear_mensaje_whatsapp():
+    pass
 
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
@@ -73,3 +77,10 @@ def cart_info():
         return session['carrito']
     else:
         return []
+    
+@app.route("/send-whatsapp-message", methods=['GET'])
+def send_whatsapp_message():
+    mensaje = crear_mensaje_whatsapp()
+    url = f"https://wa.me/{os.getenv('NUMERO_TELEFONO')}?text={mensaje}"
+    print(url)
+    return 'ok'
