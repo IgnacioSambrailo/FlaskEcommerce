@@ -9,15 +9,11 @@ import os
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     form = InformacionCliente()
-    if form.validate_on_submit():
-        print(f'pedido creado por {form.nombre_apellido.data}')
     if 'carrito' not in session:
         session['carrito'] = []
         cantidad_productos_carrito = 0
     else:
         cantidad_productos_carrito = len(session['carrito'])
-    
-        print(len(session['carrito']))
     return render_template('home.html',
                             productos=Producto.query.all(),
                             title='Home',
@@ -79,6 +75,5 @@ def cart_info():
 @app.route("/finish-order", methods=['GET', 'POST'])
 def finish_order():
     mensaje = crear_mensaje_whatsapp(request.form, session)
-    print(mensaje)
     url = f"https://wa.me/{os.getenv('NUMERO_TELEFONO')}?text={mensaje}"
     return redirect(url)
