@@ -4,8 +4,40 @@ from ecommerce.forms import InformacionCliente
 from ecommerce.models import Producto
 import os
 
-def crear_mensaje_whatsapp():
-    pass
+def crear_mensaje_whatsapp(form):
+    nombre_cliente = form.get('nombre_apellido')
+    whatsapp_cliente = form.get('numero_whatsapp')
+    email_cliente = form.get('email')
+    localidad_cliente = form.get('localidad')
+    direccion_cliente = form.get('direccion')
+    comentario_cliente = form.get('comentario')
+
+    mensaje = f"""*_FRUTIAGRICOLA_*%0A\
+*_TIENDA ONLINE_*%0A\
+%0A\
+--------------------\
+%0A\
+*Nombre y apellido*%0A\
+{nombre_cliente}%0A\
+%0A\
+*Tu Numero de WhatsApp*%0A\
+{whatsapp_cliente}%0A\
+%0A\
+*Email*%0A\
+{email_cliente}%0A\
+%0A\
+*Localidad*%0A\
+{localidad_cliente}%0A\
+%0A\
+*Tu direccion*%0A\
+{direccion_cliente}%0A\
+%0A\
+*Comentario*%0A\
+{comentario_cliente}%0A\
+%0A\
+"""
+
+    return mensaje
 
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
@@ -78,9 +110,9 @@ def cart_info():
     else:
         return []
     
-@app.route("/send-whatsapp-message", methods=['GET'])
-def send_whatsapp_message():
-    mensaje = crear_mensaje_whatsapp()
+@app.route("/finish-order", methods=['GET', 'POST'])
+def finish_order():
+    mensaje = crear_mensaje_whatsapp(request.form)
+    print(mensaje)
     url = f"https://wa.me/{os.getenv('NUMERO_TELEFONO')}?text={mensaje}"
-    print(url)
-    return 'ok'
+    return redirect(url)

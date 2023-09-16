@@ -41,7 +41,7 @@
 </div>
 
 <div class="content-section">
-    <form action="" method="POST">
+    <form action="{{ url_for('finish_order') }}" method="POST">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <div class="form-group">
