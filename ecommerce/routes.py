@@ -2,42 +2,8 @@ from flask import session, redirect, url_for, render_template, flash, redirect, 
 from ecommerce import app
 from ecommerce.forms import InformacionCliente
 from ecommerce.models import Producto
+from ecommerce.funcs import crear_mensaje_whatsapp
 import os
-
-def crear_mensaje_whatsapp(form):
-    nombre_cliente = form.get('nombre_apellido')
-    whatsapp_cliente = form.get('numero_whatsapp')
-    email_cliente = form.get('email')
-    localidad_cliente = form.get('localidad')
-    direccion_cliente = form.get('direccion')
-    comentario_cliente = form.get('comentario')
-
-    mensaje = f"""*_FRUTIAGRICOLA_*%0A\
-*_TIENDA ONLINE_*%0A\
-%0A\
---------------------\
-%0A\
-*Nombre y apellido*%0A\
-{nombre_cliente}%0A\
-%0A\
-*Tu Numero de WhatsApp*%0A\
-{whatsapp_cliente}%0A\
-%0A\
-*Email*%0A\
-{email_cliente}%0A\
-%0A\
-*Localidad*%0A\
-{localidad_cliente}%0A\
-%0A\
-*Tu direccion*%0A\
-{direccion_cliente}%0A\
-%0A\
-*Comentario*%0A\
-{comentario_cliente}%0A\
-%0A\
-"""
-
-    return mensaje
 
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/home", methods=['GET', 'POST'])
@@ -112,7 +78,7 @@ def cart_info():
     
 @app.route("/finish-order", methods=['GET', 'POST'])
 def finish_order():
-    mensaje = crear_mensaje_whatsapp(request.form)
+    mensaje = crear_mensaje_whatsapp(request.form, session)
     print(mensaje)
     url = f"https://wa.me/{os.getenv('NUMERO_TELEFONO')}?text={mensaje}"
     return redirect(url)
