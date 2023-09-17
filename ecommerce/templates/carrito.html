@@ -1,14 +1,36 @@
 {% extends "layout.html" %}
 {% block contenido %}
 
+<table id="tabla-carrito" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Cod</th>
+        <th>Producto</th>
+        <th>Precio $ARS</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
 {% for producto in info_carrito %}
-    <div class="contenedor-producto-carrito-{{ producto.id }}">
+    <!-- <div class="contenedor-producto-carrito-{{ producto.id }}">
         <img src="" alt="Imagen Producto">
         <h3 class="nombre">{{ producto.nombre }}</h3>
         <h4 class="descripcion">{{ producto.descripcion }}</h4>
         <p class="degloce-precio">${{ producto.precio }} x {{ producto.cantidad }}k</p>
         <button type='button' class="btnBorrar" onclick="eliminarProductoCarrito('{{ producto.id }}')">Eliminar</button>
-    </div>
+    </div> -->
+    {% set total = producto.cantidad * producto.precio %}
+    <tr class="contenedor-producto-carrito-{{ producto.id }}">
+        <th scope="row">{{ producto.id }}</th>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>{{ total }}</td>
+        <td><button type='button' class="btnBorrar" onclick="eliminarProductoCarrito('{{ producto.id }}')">Eliminar</button></td>
+    </tr>
 {% endfor %}
-
+</tbody>
+</table>
 {% endblock contenido %}
