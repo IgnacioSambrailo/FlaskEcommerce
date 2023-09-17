@@ -33,8 +33,7 @@
         <p> {{ producto.descripcion }} </p>
         <h3 class=""> ARS${{ producto.precio }} </h2>
             <div class="contenedor-botonera-{{ producto.nombre }}">
-                <button class="btn btn-primary" onclick="mostrarDetallesProducto('{{ producto.id }}')">Ver
-                    detalles</button>
+                <button class="btn btn-primary" onclick="mostrarDetallesProducto('{{ producto.id }}')"><i class="fa-solid fa-cart-plus"></i></button>
             </div>
     </div>
     {% endfor %}

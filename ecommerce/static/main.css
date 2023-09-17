@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #fafafa;
+    background: #ffffff;
     color: #333333;
     margin-top: 5rem;
   }
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 [class^="contenedor-producto-"] {
-  background-color: grey;
+  background-color: rgb(228, 227, 183);
   padding: 20px;
   box-sizing: border-box;
 }
